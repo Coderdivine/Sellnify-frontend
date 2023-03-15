@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { createContext, useState } from 'react';
+import Home from './Home';
+import {Seller_id} from "./Config";
 
+
+export const HomeContext = createContext(null);
 function App() {
+  const [ seller_id,setSellers_id ] = useState(Seller_id?Seller_id:"");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HomeContext.Provider
+        value={{ seller_id,setSellers_id }}
+      >
+       <Home />
+      </HomeContext.Provider>
     </div>
   );
 }
